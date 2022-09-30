@@ -1,0 +1,43 @@
+openapi: 3.0.0
+info:
+  version: '1.0'
+  title: 'Learn Open API 3.0'
+  description: 'Learning Open API with Swagger'
+paths:
+  /users:
+    summary:  all users information from the system
+    get:
+      description: Fetch all users information
+      operationId: getAllUsers
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Operation is successful
+          content:
+            'application/json':
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+        '404':
+          description: No user found
+          content:
+            'application/json':
+              schema:
+                type: string
+
+
+components:
+  schemas:
+    User:
+      description: User in the system
+      type: object
+      properties:
+        userName:
+          type: string
+        userId:
+          type: string
+          format: UUID
+        age:
+          type: integer
